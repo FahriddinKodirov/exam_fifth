@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app/data/models/firebase_model/student_model.dart';
 import 'package:firebase_app/utils/my_utile.dart';
 
-
 class StudentsRepo {
   final FirebaseFirestore _firestore;
 
@@ -46,13 +45,10 @@ class StudentsRepo {
   }
 
   Stream<List<StudentModel>> getStudents() async* {
-    
-      yield* _firestore.collection("students").snapshots().map(
-            (querySnapshot) => querySnapshot.docs
-            .map((doc) => StudentModel.fromJson(doc.data()))
-            .toList(),
-      );
-    
-      
+    yield* _firestore.collection("students").snapshots().map(
+          (querySnapshot) => querySnapshot.docs
+              .map((doc) => StudentModel.fromJson(doc.data()))
+              .toList(),
+        );
   }
 }
